@@ -1,4 +1,4 @@
-CXX		  := c++
+CXX		  := clang++
 CXX_FLAGS := -Wall -Wextra -std=c++17 -ggdb
 
 BIN		:= bin
