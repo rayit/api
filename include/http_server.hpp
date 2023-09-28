@@ -4,8 +4,8 @@
 #include <string>
 
 #include "SimpleJSON/json.hpp"
-#include "serverd/multiplexer.hpp"
-#include "server/net/server.hpp"
+#include "served/multiplexer.hpp"
+#include "served/net/server.hpp"
 
 namespace rayit_api
 {
@@ -18,17 +18,17 @@ constexpr char kThreads = 10;
 class HttpServer 
 {
 public:
-    HttpServer(served::multiplexer) : multiplexer(multiplexer) {}
+    HttpServer(served::multiplexer multiplexer) : multiplexer(multiplexer) {}
 
     auto AllCharactersEndpoint() {
-        return [&](serverd::respons &response, const served::request &request) {
+        return [&](served::response &response, const served::request &request) {
             json::JSON request_body = json::JSON::Load(request.body());
         };
     
     }
 
     void InitializeEndpoints() {
-        // map endpoints to handler functions
+        multiplexer.handle(kAllCharactersEndpoint).get(AllCharactersEndpoint());
     }
 
     void StartServer() {
