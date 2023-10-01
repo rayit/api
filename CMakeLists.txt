@@ -6,4 +6,4 @@ file(GLOB SOURCES "src/*.cpp")
 
 find_package(Crow)
 add_executable(rayitapi ${SOURCES})
-target_link_libraries(rayitapi PUBLIC Crow::Crow)
+target_link_libraries(rayitapi PUBLIC Crow::Crow sqlite3)
