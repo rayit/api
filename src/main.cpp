@@ -1,21 +1,12 @@
-#include <iostream>
-#include "SimpleJSON/json.hpp"
-#include "api.hpp"
-#include "served/multiplexer.hpp"
-#include "http_server.hpp"
+#include "crow.h"
 
-int main() 
+int main()
 {
-    std::cout << "Hello C++ project!" << std::endl;
+    crow::SimpleApp app;
 
-    //Api api;
-    //json::JSON json = api.getAllDocuments();
-    //std::cout << json << std::endl;
+    CROW_ROUTE(app, "/")([](){
+        return "Hello world";
+    });
 
-    served::multiplexer multiplexer;
-
-    rayit_api::HttpServer http_server(multiplexer);
-    http_server.StartServer(); 
-    return 0;
+    app.port(18080).run();
 }
-
